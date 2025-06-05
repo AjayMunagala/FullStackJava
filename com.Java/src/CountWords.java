@@ -9,8 +9,9 @@ public class CountWords {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a Sentence");
         str=sc.nextLine();
+        
 
 
     }
-    
+   
 }

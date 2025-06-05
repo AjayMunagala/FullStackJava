@@ -3,7 +3,7 @@ interface InterNum {
     void number(int a);
     
 }
-class Main{
+class MainClass{
     public static void main(String[] args){
 
    InterNum n1 = (n)->{

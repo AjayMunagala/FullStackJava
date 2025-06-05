@@ -81,13 +81,13 @@ class CardType{
     public static void getTypes(Customer customer ){
         CardType ct = new CardType();
        if(customer.getMonthlySpending() < 10000){
-        ct.cardName = "silver";
+        ct.setCardName("silver");
        }else if(customer.getMonthlySpending() >= 10000 && customer.getMonthlySpending() <= 50000){
-        ct.cardName = "Gold";
+        ct.setCardName("Gold");
        }else if(customer.getMonthlySpending() > 50000){
-        ct.cardName = "platinum";
+        ct.setCardName("platinum");
        }
-       System.out.println("CardType is :"+ct.cardName);
+       System.out.println("CardType is :"+ct.getCardName());
     }
 
 }
