@@ -35,6 +35,7 @@ public class substring {
         System.out.println("Enter the string ");
         String s = sc.nextLine();
         idUniqueString(s);
+        sc.close();
 
 
     }

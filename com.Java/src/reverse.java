@@ -26,6 +26,7 @@ public class reverse {
         word = sc.nextLine();
         reverse r1 = new reverse();
         r1.reveseString(word);
+        sc.close();
 
 
     }

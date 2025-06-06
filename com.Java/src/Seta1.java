@@ -50,5 +50,6 @@ public static void main(String[] args) {
     };
     A1.findNum(num);
     A2.findNum(num);
+    sc.close();
 }
 }
