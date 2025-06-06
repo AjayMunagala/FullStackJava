@@ -83,6 +83,7 @@ public class Alphabet {
         sentence = sc.nextLine();
         Alphabet a1 = new Alphabet();
         a1.CountNoOfVowConst(sentence);
+        sc.close();
 
 
     }
