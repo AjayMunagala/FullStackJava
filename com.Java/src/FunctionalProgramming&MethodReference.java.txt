@@ -1,0 +1,810 @@
+Functional Programming
+======================
+1. What is a functional programming?
+   - The functional programming is one programming paradigm 
+
+2. Why functional programming?
+   - for passing 'a function as an argument to another function' directly 
+     without creating extra a class, a method and an object
+     
+3. We have OOP already why do we need FP [OOP problem]?
+- As part of OOP, we can only pass either a value or an object as arugment to method
+- Many of times in the project we must also pass a logic or function an agument
+
+- OOP doesnot support pass function as an arugment directly. 
+
+- As part OOP, for passing a function or a logic as an argument to a method,
+  we must create a class, a method and them we must create object from this class,
+  then pass this object as arugment to method.
+  
+- Which is a lengthy process, numuber of java files, classes are increased 
+  with repeated code as shown below
+  
+	//Test.java
+	class Test {
+		public static void main(String[] args) {
+			Calc.calculate(new Addition());
+			Calc.calculate(new Subtraction());
+			Calc.calculate(new Multiplication());
+			Calc.calculate(new Division());
+		}
+	}
+	
+	class Calc {
+	    static void calculate(AO ao) {
+	         ao.calculate(10, 20);
+	    }
+	}
+	
+	//AO.java
+	interface AO {
+		void calculate(int a, int b);
+	}
+	
+	//Addition.java
+	class Addition implements AO {
+		@Override
+		public void calculate(int a, int b){
+		   int c = a + b;
+		   System.out.printf("The addition of %d and %d is %d\n",a,b,c);
+		}
+	}
+
+	//Substraction.java	
+	class Subtraction implements AO {
+		@Override
+		public void calculate(int a, int b){
+		   int c = a - b;
+		   System.out.printf("The subtraction of %d and %d is %d\n",a,b,c);
+		}
+	}
+
+	//Multiplication.java	
+	class Multiplication implements AO {
+		@Override
+		public void calculate(int a, int b){
+		   int c = a * b;
+		   System.out.printf("The multiplication of %d and %d is %d\n",a,b,c);
+		}
+	}
+
+	//Division.java	
+	class Division implements AO {
+		@Override
+		public void calculate(int a, int b){
+		   int c = a / b;
+		   System.out.printf("The division of %d and %d is %d\n",a,b,c);
+		}
+	}
+	
+3. OOP Solution:
+   - We must use Functional programming as part OOP
+   - As part of FP we can pass function as agument directly
+     without creating new class, method and object
+     
+   - Whereever we need to pass a function or a logic as an argument,
+     there we must use FP by using 'Functional interface and lambda expresssion'
+  
+4. Advantage of FP?   
+   - we can write less code means consice code
+   - we can avoid repeated code in creating class, method, object
+     in passing a function as arguemt.
+     
+5. What are the building blocks FP?
+	1. Functional interface
+	2. Lambda Expression
+  
+
+6. Below code show FP style passing function as argument by using FI and LE
+
+	//AO.java
+        @FunctionalInterface 	//FI
+	interface AO {
+		void calculate(int a, int b);
+	}
+
+	//Calc.java
+	class Calc {
+	    static void calculate(AO ao) {
+	         ao.calculate(10, 20);
+	    }
+	}
+
+	//Test.java
+	class Test {
+		public static void main(String[] args) {
+						//LE
+			Calc.calculate(  (int a, int b) -> { System.out.println(a+b); } );
+			Calc.calculate(  (int a, int b) -> { System.out.println(a-b); } );
+			Calc.calculate(  (int a, int b) -> { System.out.println(a*b); } );
+			Calc.calculate(  (int a, int b) -> { System.out.println(a/b); } );
+		}
+	}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+Day #2: Functional Interface, @FI and generic FI
+==================================================
+1. What is a functional interface?
+    - An interface that only one abstract method 
+      is called functional interface
+      
+    - For example?
+	interface I1 {  //FI -> SAM interface 
+            void m1();
+	}
+	
+2. Why funcational interface?
+	- It is used for enabling FP in Java
+	
+	- A FI provides target type to the LE 
+	- for storing and passing LE 
+	  as method argument and return value
+	  
+3. How can we create FI?
+    - A FI is created by using the keyword 'interface'
+      and it must contain only one abstract method.
+    - It can contain 'n' number of 
+	1. default implemented methods
+	2. static implemented methods
+	3. private static and non-static methods
+	  
+    - for example:
+	public interface I1 {
+	     public abstract void m1();
+		 
+	     public default void m2() { }	
+	     public default void m3(){ }
+	     
+	     public static void m4(){ }
+	     public static void m5(){ }
+	     
+	     private static void m6(){ }
+	     private  void m7(){ }
+	}
+
+4. Type of interfaces?
+    - From Java 8v onwards we have 3 types of interfaces
+	1. Marker interface		-> empty interface
+	2. Functional interface		-> one abstract method interface
+	3. Business object interface	-> repesents object and contains multiple methods
+	
+     - An interface that does not have any methods in its body, 
+       means an empty interface is called marker interface.
+	For example: Cloneable, Serializable, RandomAccess, SingelThreadModel,...
+	
+	- A marker interface is used only for giving type to its implementation class
+	  to provide special permissions to execute some special logic on this 
+	  implementation class object in another classes methods.
+	  
+	  For example: 
+		1. For cloning an object by calling clone() method 
+		   this object's class must implement Cloneable marker interface
+		   
+		   The Cloneable marker interface provides permissions
+		   to the Object class clone() method to clone this current object
+		   
+		2. For serializing a class object by using OOS.writeObject() method 
+		   the arguemnt object must implement Serializable marker interface
+		   
+     - An interface that has only one abstract method 
+       is called functional interface.
+          For example: Runnable, Comparator, Consumer, Supplier, Function, Predicate
+	  
+	  - A functional interface is used for declaring one 
+	    mathematical function to be implemented by a LE
+	  - For example:
+		interface Addition {
+		    void add(int a, int b);
+		}
+		
+     - An interface that represents one real world object's main type,
+       and delares multiple methods to represents its operations 
+       is called Bunsiness object interface
+	For example:
+		interface Vehicle {
+		    void start();
+		    void move();
+		    void stop();
+		}
+		
+5. Identify the interface type in the below list?
+	interface I1 { //not a FI, it is a marker interface( empty interface)
+	
+	}
+
+	interface I2 {	//FI, one abstract method interface 
+		void m1();
+	}
+
+	interface I3 {	//not a FI, has more than one FI
+		void m1();	// it is a normal interface/business object interface
+		void m2();
+	}
+
+	interface I4 {	//FI, 1 AM + DIM
+		void m1();
+		default void m2(){ }
+	}
+
+	interface I5 {	//FI becomes not a FI, because one more AM is added 
+		void m1();
+		void m2();
+	}
+
+	@FunctionalInterface
+	interface I6 {	//Declaring this interface as FI explicitly 
+		void m1();	//if we add more than one AM, we will get CE
+		//void m2();
+	}
+	
+	@FunctionalInterface
+	interface I7 {	//It is a FI even though its have 2 AMs
+		void m1();	//because the equals() is Object class method, 
+		boolean equals(Object obj);	//we not need to implement.
+	}		//Hence logically this interface has only one AM
+
+	@FunctionalInterface
+	interface I8 {	//It is a FI even though its have 2 AMs
+		void m1();	//because the equals() is Object class method, 
+
+		  public int hashCode();
+		  public boolean equals(Object obj);
+		  public String toString();
+		  
+		 // protected Object clone() throws CloneNotSupportedException;
+		 // protected void finalize() throws Throwable;
+
+		 //public Object clone() throws CloneNotSupportedException;
+		 //public void finalize() throws Throwable;
+	}
+	
+6. How can we guarentee that interface has only one AM?
+     - declare this inerface with @FunctionalInterface annotation
+
+7. What is @FunctionalInterface?
+     - The @FunctionalInterface is a marker annotation
+     
+     - It is used for declaring an interface as a FI
+       to allow to have only one AM
+       
+     - After apply @FunctionalInterface to an interface
+       we can not add more than 1 AM, it leads CE
+
+8. Is it mandatory to use @FunctionInterface in creating FI?
+	- Noooooooo, it is optional
+	- As long as you won't create more than 1 AM
+	  it is considered as FI
+	  
+	- Eventhough it is not mandatory,
+	  the usage of @FI is recommanded
+	  to tell to other developers and compiler
+	  it is a FI, donot add and dont allow more AMs
+	  
+9. What is a generic funtional interface?
+     - A FI that is declared with generic syntax 
+       is called generic FI
+
+     - for example:
+        @FunctionalInterface
+	interface Addition<T>{
+	    void add(T t1, T t2);
+	}
+
+10. What is the use of generic FI?
+     - with generic FI we no need create
+       multiple FIs for accepting diff type of values 
+       as argument and for returing different type of values
+     
+     - With a single generic FI declaration, 
+       we can accept and return diff type values
+
+     - For example:
+     
+         @FunctionalInterface
+	 interface I1 {	//non-generic FI, always accepts only int type values
+	     void m1(int a, int b);
+	     //void m1(double a, double b);
+	 }
+	 
+         @FunctionalInterface
+	 interface I2 {	//non-generic FI, always accepts only double type values
+	    void m1(double a, double b);
+	 }
+
+	 @FunctionalInterface
+	 interface I3 {	//non-generic FI, always accepts only double type values
+	    void m1(char a, char b);
+	 }
+	 
+	 @FunctionalInterface
+	 interface I3 {	//non-generic FI, always accepts only double type values
+	    void m1(String a, String b);
+	 }
+    //=================================================================	 
+	 @FunctionalInterface
+	 interface I<T> {	//generic FI, accepts any type of values 
+	    void m1(T a, T b);	//dynamically. No need to define mulitple
+	 }			//functional interfaces to take differen type values	
+   //=================================================================	 
+	 @FunctionalInterface
+	 interface I<T, U> {	//generic FI, accepts two diff type of values 
+	    void m1(T a, U b);	//dynamically. 
+	 }			
+	 
+	 @FunctionalInterface
+	 interface I<T, R> {	//generic FI, accepts one type values 
+	    R m1(T a);		//and return another type value. 
+	 }			
+	 
+	 @FunctionalInterface
+	 interface I<T> {	//generic FI, accepts and return same type value 
+	    T m1(T a);		
+	 }			
+	 
+	 @FunctionalInterface
+	 interface I<T, R> {	
+	    R m1(T a, T b);		
+	 }			
+	 
+	 @FunctionalInterface
+	 interface I<T, U, R> {	
+	    R m1(T a, U b);		
+	 }			
+	 
+11. What are the diff combinations of inputs and outputs required for a FI?
+
+=======================================================================================================================================================
+/*
+Lambda Expression (LE)
+======================
+Q1) What is a LE?
+	- A LE is an anonymous function
+	  means it is a nameless function
+
+	- A LE is an implementation of one FI
+
+	- A LE is an object which is an instance of 
+	 one functional interface implementation
+
+Q2) Why LE?
+	1. for enabling FP in Java and also 
+    2. for implementing a FI with less code
+    3. for passing a function directly as an argument 
+	   to a method without creating extra class, method and object
+	 
+Q3) Syntax for creating LE?
+	- A LE has two parts 
+			1. parameters and
+			2. body with logic
+	           connected an lambda operator [->]
+
+	- (parameters) -> {logic}; 
+	 
+	- this '->' is called lambda operator
+	- hence this expression is called lambda expression
+	
+	- A lambda operator '->' is a binary operator, 
+	  it takes two operands () and {} 
+
+Q4) How can we implement and store a LE?
+	- by using a FI
+	
+	- with a FI only we can create and store a LE
+	- The target type for creating and storing a LE is FI
+
+Q5) What is the internal name, parameters, return type and exception of a LE?
+	- Those are derived from FI
+	
+	- Generally people say 
+	  A LE can have 
+		0-n number of parameters
+		any return type and 
+		can throw any exception
+	  it is a wrong statements
+
+	- all above things are derived from a FI 
+	  to which this LE is assigned.
+	 
+Q6) When there is no name to the LE, how can we execute its logic?
+	- The LE name is same as FI method name
+	- Hence, we must call LE by using FI method name
+	  by passing arguments according to the FI method parameters
+	 
+Q7) What is the complete syntax for creating and calling a LE?
+		FI fi = (parameters) -> { logic } ;
+		fi.method(args);
+
+Q8) LE Short-cut syntaxes?
+	FI fi = (params) -> { statements } ;
+
+	FI fi = () 	-> stmt;   	//1. for one statement, { } is not required
+	FI fi = (a) -> stmt;   	//2. for the parameter, type is not required
+	FI fi =  a 	-> stmt;   	//3. for one parameter, () is not required
+	FI fi = (a, b) 	-> stmt;//4. for zero or multiple parameters, () is required
+	FI fi = (a, b) 	-> 50;	//5. we can return value directly, 
+	                        //   { } and return kw are not required
+         
+Q9) Explain LE creation, calling and execution with 
+    zero parameters, one parameter, multiple parameters 
+	and with void and non-void return types
+ */
+
+public class Test06_LE {
+	public static void main(String[] args) {
+		
+		//Rule: We can not place LE directly in a method
+		//it leads to CE, because it is an expression, 
+		//it must be assigned to a variable
+			//(a, b) -> System.out.println(a + b); //CE: not a statement		
+			
+		//Because LE is an implementation of one FI
+		//First we must create a FI
+		//to create LE by implementing this FI method math operation
+		
+		System.out.println("Before LE");
+	
+		I11 i1 = () -> { System.out.println("I11 LE"); }; //function creation
+		i1.m1();  //calling and executing LE
+		System.out.println();
+		
+		I12 i2 = (int a) -> { System.out.println("I12 LE a: "+ a); }; //creation
+		i2.m1(10); //calling
+		i2.m1(20);
+		System.out.println();
+				
+		I13 i3 = (int a, int b) -> { System.out.println("I13 LE result: "+ (a + b));}; 
+		i3.m1(10, 20);
+		i3.m1(30, 40);
+		System.out.println();
+				
+		I14 i4 = () -> {
+							System.out.println("I14 LE");
+							return 10; 
+					   };
+		i4.m1();			
+		int res = i4.m1();
+		System.out.println(i4.m1());
+		System.out.println();
+		
+		I15 i5 = (int a) -> {
+								System.out.println("I15 LE");
+								return a + 50;
+							};
+		i5.m1(10);					
+		res = i5.m1(20);
+		System.out.println(i5.m1(30));					
+		System.out.println();
+		
+	//A LE is an object which is an instanceof FI implementation class
+	//The Implementation class is generated by JVM at runtime dynamically 
+		System.out.println(i1);
+		System.out.println(i2);
+		System.out.println(i3);
+		System.out.println(i4);
+		System.out.println(i5);
+		
+  //======================================================================
+		I11 i11  = () -> { System.out.println("LE1"); };	
+		I11 i111 = () ->   System.out.println("LE1"); 
+		
+		I12 i12  = (int a) -> { System.out.println("LE2");};
+		I12 i121 = (int a) ->   System.out.println("LE2");
+		I12 i122 = (a)     ->   System.out.println("LE2");
+		I12 i123 = a       ->   System.out.println("LE2");
+		
+		I13 i13  = (int a, int b) -> { System.out.println("LE3");};
+		I13 i131 = (a, b)         ->   System.out.println("LE3");
+		
+		I14 i14  = () -> { return 50; };
+		I14 i141 = () ->   50;
+		I14 i142 = () ->   50 + 60;
+		I14 i143 = () ->   "abc".length();
+		
+		I15 i15 = (int a) -> {return a + 50;}; 
+		I15 i151 = a      ->  a + 50;
+		System.out.println("LE151 res: " + i151.m1(70));
+  //=======================================================================		
+/**/		
+		System.out.println("After LE");
+	}
+}
+
+@FunctionalInterface
+interface I11{
+	void m1();
+}
+
+@FunctionalInterface
+interface I12{
+	void m1(int a);
+}
+
+@FunctionalInterface
+interface I13{
+	void m1(int a, int b);
+}
+
+@FunctionalInterface
+interface I14{
+	int m1();
+}
+
+@FunctionalInterface
+interface I15{
+	int m1(int a);
+}
+
+@FunctionalInterface
+interface I16<T>{
+	T m1(T t);
+}
+
+@FunctionalInterface
+interface I17<T, R>{
+	R m1(T t);
+}
+
+@FunctionalInterface
+interface I17<T>{
+	T m1();
+}
+
+=======================================================================================================================================================
+/*
+Method reference 
+==============================================
+1. What is a method reference?
+	- Referencing or calling a method or constructor of one class
+	  for implementing a FI is called method reference
+
+  	- A method reference is a short-cut for creating LE
+
+2. Why method reference?
+	- it is for decreasing code in create LE
+	- LE is itself short-cut for implementing FI
+	- MR is the more short for LE for implementing FI
+
+3. How can we implement MR?
+	- A method reference is implemented 
+	  by using a separator called '::' (double colon)
+	 
+	- In Java, :: is not a operator
+	  it is a separator 	 
+
+4. How many ways we can implement MR?
+	In 4 ways 
+		1. static method reference  
+		2. instance method reference of a particular object 
+		3. instance method reference of an arbitrary object of a particular type
+		3. constructor reference
+
+	1. if we access a static method of a class for implementing FI
+	   it is called static method reference
+
+	   - Syntax and example:
+			FI fi = ClassName::staticmethodname;
+			I1 i1 = A1::m1;
+
+	2. if we access a non-static method of a class for implementing FI
+	   it is called non-static method reference or instance method reference
+
+	  - Syntax and example:
+			FI fi = ClassObject::instancemethodname;
+			I1 i1 = new A1()::m1;
+
+	3. if we access a non-static method of a class on a collection of objects or an array of objects 
+	   of paraticular type for implementing a FI, it is called instance method reference
+	   of an arbitrary object
+
+	   - Syntax and example:
+			FI fi = ClassName::instancemethodname;
+			I1 i1 = A1::m1;
+
+	4. if we access a constructor of a class for implementing FI
+	   it is called constructor reference
+
+	  - Syntax and example:
+			FI fi = ClassName::new;
+			I1 i1 = A1::new;
+
+5. If the referenced method or constructor 
+   is a overloaded method or constructor, which 
+   parameter method or constructor is executed?
+		- it is depending on FI method parameters 
+
+
+ */
+
+class A1 {
+	static void m1() {
+		System.out.println("A1 m1() Hi");
+	}
+	
+	static void m1(int a) {
+		System.out.println("A1 m2(int) "+ a);
+	}
+	
+	void m2() {
+		System.out.println("A1 m2() Hello");
+	}
+
+	void m2(int a) {
+		System.out.println("A1 m2(int) a: "+ a);
+	}
+	
+	A1(){
+		System.out.println("A1 NPC HRU?");
+	}
+	
+	A1(int a){
+		System.out.println("A1 IPC a: "+ a);
+	}
+	
+}
+
+@FunctionalInterface
+interface Abc1 {
+	void abc();
+}
+
+@FunctionalInterface
+interface Abc2 {
+	void abc(int a);
+}
+
+public class Test07_MR {
+	public static void main(String[] args) {
+		
+		Abc1 a1 = () -> { System.out.println("LE Hi"); };
+		a1.abc();
+		
+	//======================================================================	
+		Abc1 a2 = () -> { A1.m1(); };
+		a2.abc();
+			
+		Abc1 a3 = A1::m1; 	//method reference is a short-cut LE creation
+		a3.abc();
+	//======================================================================	
+		
+		Abc2 a4 = a -> A1.m1(a);
+		a4.abc(10);
+		
+		Abc2 a5 = A1::m1;
+		a5.abc(20);
+		System.out.println();
+	//======================================================================	
+		
+		Abc1 a6 = () -> new A1().m2();
+		a6.abc();
+		
+		Abc1 a7 = new A1()::m2;
+		a7.abc();
+		System.out.println();	
+	//======================================================================	
+	
+		Abc2 a8 = a -> new A1().m2(a);
+		a8.abc(123);
+		
+		Abc2 a9 = new A1()::m2;
+		a9.abc(223);
+		System.out.println();
+	//======================================================================
+		
+		Abc1 a10 = () -> { new A1(); };
+		a10.abc();
+		
+		Abc2 a11 = (int a) -> { new A1(a); };
+		a11.abc(5656);
+		System.out.println();
+		
+	//======================================================================
+		Abc1 a12 = A1::new;
+		a12.abc();
+		
+		Abc2 a13 = A1::new;
+		a13.abc(2345);
+		System.out.println();
+	//=====================================================================
+		Abc2 a14 = (a) -> { System.out.println(a); };
+		a14.abc(45);
+	
+		Abc2 a15 = System.out::println; 
+		a15.abc(55);
+		System.out.println();
+	//=====================================================================
+		Abc2 a16 = (a) -> { System.out.println("a:" + a); };
+		a16.abc(45);
+		
+		Abc2 a17 = System.out::println; 
+		a17.abc(55); 
+		System.out.println();
+	//=====================================================================
+		System.out.println(a16);
+		System.out.println(a17);
+	//=====================================================================
+		
+		//Abc3 a18 = A1::m1;
+		//Abc3 a19 = new A1()::m2;
+		//Abc3 a20 = A1::new;
+		
+		Abc3 a21 = "hari"::toUpperCase; //-> Abc3 a23 = () -> { return "hari".toUpperCase(); };
+		a21.m1();
+/**/		
+	}
+}
+
+
+@FunctionalInterface
+interface Abc3 {
+	String m1();
+}
+
+============================================================================================================================================================
+
+public class Student {
+	
+	private int sno;
+	private String sname;
+	private String course;
+	private double fee;
+	
+	public Student() { 
+		//no-op
+	}
+	
+	public Student(int sno, String sname, String course, double fee){ 
+		this.sno	= sno;
+		this.sname	= sname;
+		this.course	= course;
+		this.fee	= fee;
+	}
+	
+	public void setSno(int sno){
+		this.sno = sno;
+	}
+	
+	public int getSno(){
+		return sno;
+	}
+
+	public void setSname(String sname){
+		this.sname = sname;
+	}
+	
+	public String getSname(){
+		return sname;
+	}
+
+	public void setCourse(String course){
+		this.course = course;
+	}
+	
+	public String getCourse(){
+		return course;
+	}
+
+	public void setFee(double fee){
+		this.fee = fee;
+	}
+	
+	public double getFee(){
+		return fee;
+	}
+
+	@Override
+	public String toString() {
+		return "\nStudent("+sno + " " + sname + " " + course+ " " + fee+")";	
+	}
+
+}
+
+
+
+
+
+
+	
+	
+	
+
