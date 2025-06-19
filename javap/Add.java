@@ -146,6 +146,13 @@ variable :
     if - elseif
     switch
 
+
+    if
+    ===
+    if(expression){
+          ----Statements---
+    }
+
               
 
 
@@ -187,8 +194,8 @@ variable :
 
 class Comparison{
   public static void main(String[] args) {
-    int a;
-    int b;
+    int a = 19;
+    
 
     
 

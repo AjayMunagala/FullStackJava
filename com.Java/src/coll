@@ -1,0 +1,1003 @@
+
+
+
+ -------------------------------------------------------------------------------------
+ ArrayList:
+ ---------------
+ 
+ - It is an implementation class of List.
+ - It is available in java.util package.
+ - It extends AbstractList<E>.
+ - It implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+ - The underlying datastructure of Arraylist is resizable array.
+ - It is heterogeneous in nature.
+ - null is allowed
+ - duplicate elements are allowed.
+ - insertion order is preserved.
+ - Default capacity of ArrayList is 10.
+ - It supports serialization
+ - It supports cloning.
+ - Fetching data from arraylist is easy because it has index.
+ - The new capacity is (OCx3/2)+1.
+   
+ - ArrayList can be created in three ways:
+     1.public java.util.ArrayList():
+     -------------------------------
+     The above constructor gets executed when we create arraylist object with no
+     arguments passed to it. Then, an arraylist with default capacity 10 is
+     generated.
+     When we dont know about the size of elements to be stored then we must
+     create arraylist with no arguments.
+        import java.util.ArrayList;
+         public class TestArrayList1 {
+         public static void main(String[] args) {
+          ArrayList a = new ArrayList();//arraylist created with default capacity 10
+          System.out.println(a);// []
+          }
+          }
+     
+     2. public java.util.ArrayList(int);
+     ---------------------------------------
+       - Create an arraylist with the given capacity.
+       import java.util.ArrayList;
+       public class TestArrayList1 {
+       public static void main(String[] args) {
+       ArrayList a = new ArrayList(12);//arraylist created with capacity 12
+       System.out.println(a);// []
+       }
+       }
+       - It is generally used when we expect the exact number of elements to be
+        stored in arraylist before it resizes.It helps to avoid overhead of resizing
+        the arraylist.
+   
+     3. public java.util.ArrayList(java.util.Collection<? extends E>);
+      --------------------------------------------------------------------
+      It creates a copy of any collection.
+      import java.util.ArrayList;
+      import java.util.LinkedList;
+      public class TestArrayList1 {
+      public static void main(String[] args) {
+      LinkedList register = new LinkedList();
+       register.add("aman");
+       register.add("aman");//duplicate
+       register.add("suresh");
+       register.add("vinod");
+       register.add("nova");
+       register.add("nova");//duplicate
+       System.out.println("Elements in set: "+register);
+       ArrayList finalRegister = new ArrayList(register);//copied the LinkedList to arraylist
+       System.out.println("Final register: "+finalRegister);
+      }
+      }
+  - Whenever the continuous process is of adding or removing elements
+    from the arraylist then we will get performance issues.
+    - ArrayList is non thread safe.
+______________________________________________________________________________________________________
+package com.nit.collectionprograms;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+public class TestCollectionMethods {
+public static void main(String[] args) {
+//    ArrayList<Integer> al = new ArrayList<Integer>();
+//    System.out.println("Collection created. ");
+//    System.out.println("Collection is empty. "+al.isEmpty());
+//    al.add(100);
+//    al.add(200);
+//    al.add(190);
+//    al.add(800);
+//    System.out.println("ELements added into collection.");
+//    //size(): check the number of elements in collection
+//    System.out.println("No. of elements: "+al.size());
+//    //isEmpty(): check whether collection contains any element.
+//    System.out.println("Collection is empty: "+al.isEmpty());
+//    
+//    //contains: checks whether the passed object is available in memory
+//    System.out.println("Element 60 is avaialable. "+al.contains(60));
+//    System.out.println("Element 800 is avaialable. "+al.contains(800));
+//    
+//    
+//    //iterator(): used to create cursor object and traverse through the collection
+//    Iterator   = al.iterator();
+//    System.out.println("Elements in collection are: ");
+//    while(itr.hasNext()) {
+//        Integer obj = (Integer)itr.next();
+//        System.out.println(obj);
+//    }
+//    Object arr[] = al.toArray();
+//    for(Object o: arr) {
+//        System.out.println(o);
+//    }    
+//    //remove(int index): remove object from collection based on index if available
+//    System.out.println("Removing element at index 0: ");
+//    //al.remove(9); IOBE
+//    System.out.println(al);    
+//    
+//    //remove(Object o): remove object from collection based on passed object if avaialable
+//        System.out.println("Removing object 800: ");
+//        al.remove(new Integer(800));
+//        System.out.println(al);    
+//---------------------------------------------------------------------------------------    
+   //addAll(): Add all the elements of a collection into another
+//        ArrayList<Integer> al2 = new ArrayList<Integer>();
+//        al2.add(100);
+//        al2.add(20);
+//        al2.add(90);
+//        al2.add(800);
+//        System.out.println("Elements in al: "+al);
+//        System.out.println("Elements in al2: "+al2);
+//        System.out.println("Adding all elements of al2 into al");
+//        al.addAll(al2);
+//        System.out.println("Elements in al: "+al);
+//        System.out.println("Elements in al2: "+al2);
+
+//   //containsAll(): check whether a collection contains all elements of another collection
+//        System.out.println("al contains all elements of al2: "+al.containsAll(al2));
+//        System.out.println("Removing an element(90) of al2 from al. ");
+//        al.remove(new Integer(90));
+//        System.out.println("Elements in al: "+al);
+//        System.out.println("al contains all elements of al2: "+al.containsAll(al2));
+//        System.out.println("Elements in al: "+al);
+//        System.out.println("Elements in al2: "+al2);
+
+        //retainAll(): keeps the matching elements and remove the other(but not
+//        the copy of collection got from addAll().)        
+//        System.out.println("Retaining elements in al: ");
+//        al.retainAll(al2);
+//        System.out.println("Elements in al: "+al);
+//        System.out.println("Elements in al2: "+al2);
+       
+        //removeAll():matching elements and all elements of copy are removed
+//        System.out.println("Remove all elements of al2 which is avaialable in al ");
+//        al.removeAll(al2);
+//        System.out.println("Elements in al: "+al);
+//         System.out.println("Elements in al2: "+al2);
+         
+         //clear():remove everything from the collection and make it empty.
+//        System.out.println("clearing elements from al.");
+//        al.clear();
+//        System.out.println("Elements in al: "+al);
+//         System.out.println("Elements in al2: "+al2);
+       
+   
+    ArrayList<Integer> al = new ArrayList<Integer>();
+    al.add(101);
+    al.add(202);
+    al.add(303);
+    al.add(404);
+    System.out.println("Elements in al: "+al);
+    al.removeIf(n->n%2==0);
+    System.out.println("Elements in al: "+al);
+}
+}
+---------------------------------------------------------------------------------------------------------
+package com.nit.collectionprograms;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+public class TestList1 {
+public static void main(String[] args) {
+    //heterogeneous collection
+    ArrayList<Integer> a = new ArrayList();
+    a.add(100);//PTV---> IWCO
+    a.add(208);
+    a.add(400);
+    a.add(60);
+    a.add(90);
+    a.add(500);
+    //retrieve one element at a time and perform operation on element
+//    System.out.println(a.get(0));
+//    System.out.println(a.get(1));
+//    System.out.println(a.get(2));
+//    System.out.println(a.get(3));
+//    System.out.println(a.get(4));
+//    System.out.println(a.get(5));
+    //System.out.println(a.get(6));//IOBE
+//    for(int i=0;i<a.size();i++) {
+//        System.out.println(a.get(i));
+//    }
+//    for(Object i: a) {
+//        Integer nInteger = (Integer)i;
+//        System.out.println(i);
+//    }
+//    Iterator itr = a.iterator();
+//    while(itr.hasNext()) {
+//        Integer i = (Integer)itr.next();
+//        System.out.println(i);
+//    }
+    //Java 8 feature:- Allow to have default concrete method in interface
+    //Functional Programming- FunctionalInterfaces - Lambda Expression
+    //deafult foreach(Consumer<E> c){ for(____:c)  accept(n); }
+    //Stream API
+   
+    a.forEach(System.out::println);
+   
+}
+}
+-------------------------------------------------------------------------------------------------------------------------------
+package com.nit.collectionprograms;
+
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Spliterator;
+import java.util.stream.Stream;
+
+public class Q1 {
+public static void main(String[] args) {
+    ArrayList<String> animal = new ArrayList<String>();
+    animal.add("Lion");
+    animal.add("Buffalo");
+    animal.add("Monkey");
+    animal.add("Panda");
+    animal.add("Cat");
+    animal.add("Tiger");
+    //1. printing the names directly with reference
+    System.out.println(animal);
+   
+    //2. printing names by the help of for loop and get(int index)
+    for(int i=0;i<animal.size();i++) {
+        System.out.print(animal.get(i)+" ");
+    }
+    System.out.println();
+   
+    //3. printing names by the help of forEach()
+    animal.forEach(str->System.out.print(str+" "));
+    System.out.println();
+   
+    //4. printing names by the help of extended for loop/enhanced for loop
+    for(String str:animal) {
+        System.out.print(str+" ");
+    }
+    System.out.println();
+   
+    //5. printing names by the help of Enumeration-X
+    //Enumeration<String> e = ((Object) animal).elements();
+   
+    //5. printing names by the help of Iterator
+    Iterator<String> itr = animal.iterator();
+    while(itr.hasNext()) {
+        String str = itr.next();
+        System.out.print(str+" ");
+    }
+    System.out.println();
+   
+    //6. printing using ListIterator
+    ListIterator<String> ltr = animal.listIterator();
+    while(ltr.hasNext()) {
+        String str = ltr.next();
+        System.out.print(str+" ");
+    }
+    System.out.println();
+   
+    //7. printing by taking support of Stream API
+    Stream<String> stream = animal.stream();
+    stream.forEach(a->System.out.print(a+" "));
+    System.out.println();
+   
+    //8. printing by taking support of SplitIterator-forEachRemaining()
+    Spliterator<String> splitr = animal.spliterator();
+    splitr.forEachRemaining(an->System.out.print(an+" "));
+    System.out.println();
+   
+    //9. printing by taking support of SplitIterator-tryAdvance()
+    Spliterator<String> spl = animal.spliterator();
+    while (spl.tryAdvance(a->System.out.print(a+" ")));
+  }
+}
+
+Add class comment…
+
+
+Announcement: "LinkedList: - It is a predefined class…"
+Jagannath Bhandari
+Created Jun 5Jun 5
+LinkedList:
+ - It is a predefined class available in java.util.
+ - It extends AbstractSequentialList<E>
+    implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+ - Its underlying data structure is rearranging the nodes.
+ - It is heterogeneous.
+ - It allows duplicates.
+ - It allows null.
+ - No default capacity.
+ - It is a good choice to be taken when continuous process is about
+  adding and removing element but memory wise it is bad as compared to
+  ArrayList.
+ - It supports serialization and cloning.
+ There are two ways to create a LinkedList:
+   public java.util.LinkedList();
+  public java.util.LinkedList(java.util.Collection<? extends E>);
+ 
+     
+ Vector:
+ ------
+ - It is a predefined class available in java.util .
+ - It extends AbstractList<E>
+    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+ - It is available since first version of java hence it is also called as
+   legacy class.
+ - It has dynamic array structure.
+ - Its default capacity is 10.
+ - Its new capacity is OldCapacity x 2.
+ - It is heterogeneous.
+ - It allows duplicate.
+ - It allows null.
+ - It is thread safe.
+ - It has synchronized operations.
+ - It supports serialization.
+ - It supports cloning.    
+ 
+ We can create Vector in 4 different ways:
+  - public java.util.Vector(int, int);
+  - public java.util.Vector(int);
+  - public java.util.Vector();
+  - public java.util.Vector(java.util.Collection<? extends E>);
+ 
+ Stack:
+ -----
+ - It is predefined class avaialble in java.util.
+ - It extends Vector.
+ - It follows LIFO.
+ - It is also a legacy class.
+ - It is heterogeneous.
+ - It allows duplicates.
+ - It supports serialisation and cloning
+ - If there are no elements in stack then if we try to peek or pop element from
+   the empty stack then we will get an exception i.e., EmptyStackException.
+ - pop() in Stack is used to retrieve, remove and then return the element from
+    top of stack.
+ - peek() in Stack is used to retrieve and return the element from top of stack.
+ - search() returns how far the element is from the top of stack.If element
+  is not available then we will get -1.
+ 
+import java.util.Stack;
+public class TestStack {
+public static void main(String[] args) {
+    Stack book = new Stack();
+    book.push("Atomic Habit");
+    book.push("JVM Architecture");
+    book.push("Java 8 features");
+    book.push("Theory of Computation");
+    book.push("Atomic Habit");//duplicate
+//    book.push(null);
+    //System.out.println("Before pop(): "+book);
+    //System.out.println(book.pop());
+    //System.out.println("After pop(): "+book);
+    System.out.println("Search AtomicHabit book: "+book.search("Atomic Habit"));
+}
+}
+===============================================================================================================================================
+How HashMap works internally?
+Answer:
+a) Object Comparison in HashSet and HashMap
+In a HashMap, keys must be unique.
+HashSet internally uses a HashMap, where elements are stored as keys, and a dummy value is used.
+Therefore, every object must be compared when added to ensure that duplicates are not allowed.
+
+b) How HashMap Verifies Key Uniqueness
+When inserting a new key-value pair, HashMap uses:
+hashCode() – to determine the bucket location.
+== operator – to check if two keys are the same reference.
+equals() method – to check if two keys are equal in content.
+
+c) hashCode() Invocation While Adding a Key
+When calling hm.put(key, value), internally:
+key.hashCode() is called to compute the hash code.
+The computed hash code determines the bucket where the key-value pair will be stored.
+Example:
+HashMap<String, Integer> hm = new HashMap<>();
+hm.put("apple", 100);
+"apple".hashCode() is calculated, and the key is stored in the corresponding bucket.
+
+d) Handling Hash Collisions
+A hash collision happens when two keys have the same hash code.
+When this happens:
+== operator checks if both keys are the same object reference.
+If references are different, equals() is called to compare key content.
+If equals() returns true, the value is updated.
+If equals() returns false, a new entry is added to the bucket.
+Note: equals() is only called when:
+The hash codes are the same AND
+The key references are different.
+
+e) Role of hashCode()
+The hashCode() method does not compare objects directly.
+It is only used to place objects in the correct bucket.
+Instead of comparing every key, it compares only with other keys in the same hash code bucket.
+
+f) Purpose of Buckets
+The purpose of grouping keys into buckets is to reduce comparisons.
+Instead of checking all keys in the HashMap, we only check keys in the relevant bucket.
+This improves performance.
+
+g) Data Structure Used in HashMap
+HashMap uses a Hashtable as its underlying data structure.
+It maps keys to values using buckets.
+
+h) Buckets and Hash Table
+A bucket is a group of entries that share the same hash code.
+The hash table is used to store these buckets.
+
+i) Internal Implementation Using Node Class
+HashMap internally uses an array of Node class objects.
+The Node class stores:
+static class Node<K,V> {
+    final int hash;
+    final K key;
+    V value;
+    Node<K,V> next;
+}
+Each bucket in the hash table is represented by a linked list of Node objects.
+
+j) Buckets Use LinkedList
+When multiple keys have the same hash code, a linked list is used inside the bucket.
+This allows multiple key-value pairs to exist in the same bucket.
+
+k) Bucket Definition
+A bucket is a group of entries that have the same hash code.
+It can store multiple key-value pairs.
+
+l) Java 8 Optimization – Replacing LinkedList with Tree
+Searching in a LinkedList is slow (O(n) complexity).
+From Java 8 onwards, if a bucket has more than 8 entries, it is converted into a
+Binary Search Tree (BST).
+This improves search performance from O(n) → O(log n).
+Equals and hashCode() Contract
+Both equals() and hashCode() work together to determine duplicate objects.
+The contract states:
+If equals() returns true, then both objects must have the same hashCode().
+If two objects have the same hashCode(), they may not be equal (hash collision).
+If two objects are equal, their hash codes must be the same.
+----------------------------------------------------------------------------------------------------------------------------------------------
+ArrayList:
+ ---------------
+ 
+ - It is an implementation class of List.
+ - It is available in java.util package.
+ - It extends AbstractList<E>.
+ - It implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+ - The underlying datastructure of Arraylist is resizable array.
+ - It is heterogeneous in nature.
+ - null is allowed
+ - duplicate elements are allowed.
+ - insertion order is preserved
+ - Default capacity of ArrayList is 10.
+ - It supports serialization
+ - It supports cloning.
+ - Fetching data from arraylist is easy because it has index.
+ - The new capacity is (OCx3/2)+1.
+   
+ - ArrayList can be created in three ways:
+     1.public java.util.ArrayList():
+     -------------------------------
+     The above constructor gets executed when we create arraylist object with no
+     arguments passed to it. Then, an arraylist with default capacity 10 is
+     generated.
+     When we dont know about the size of elements to be stored then we must
+     create arraylist with no arguments.
+        import java.util.ArrayList;
+         public class TestArrayList1 {
+         public static void main(String[] args) {
+          ArrayList a = new ArrayList();//arraylist created with default capacity 10
+          System.out.println(a);// []
+          }
+          }
+     
+     2. public java.util.ArrayList(int);
+     ---------------------------------------
+       - Create an arraylist with the given capacity.
+       import java.util.ArrayList;
+       public class TestArrayList1 {
+       public static void main(String[] args) {
+       ArrayList a = new ArrayList(12);//arraylist created with capacity 12
+       System.out.println(a);// []
+       }
+       }
+       - It is generally used when we expect the exact number of elements to be
+        stored in arraylist before it resizes.It helps to avoid overhead of resizing
+        the arraylist.
+   
+     3. public java.util.ArrayList(java.util.Collection<? extends E>);
+      --------------------------------------------------------------------
+      It creates a copy of any collection.
+      import java.util.ArrayList;
+      import java.util.LinkedList;
+      public class TestArrayList1 {
+      public static void main(String[] args) {
+      LinkedList register = new LinkedList();
+       register.add("aman");
+       register.add("aman");//duplicate
+       register.add("suresh");
+       register.add("vinod");
+       register.add("nova");
+       register.add("nova");//duplicate
+       System.out.println("Elements in set: "+register);
+       ArrayList finalRegister = new ArrayList(register);//copied the LinkedList to arraylist
+       System.out.println("Final register: "+finalRegister);
+      }
+      }
+  - Whenever the continuous process is of adding or removing elements
+    from the arraylist then we will get performance issues.
+    - ArrayList is non thread safe.
+
+ LinkedList:
+ - It is a predefined class available in java.util.
+ - It extends AbstractSequentialList<E>
+    implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+ - Its underlying data structure is rearranging the nodes.
+ - It is heterogeneous.
+ - It allows duplicates.
+ - It allows null.
+ - No default capacity.
+ - It is a good choice to be taken when continuous process is about
+  adding and removing element but memory wise it is bad as compared to
+  ArrayList.
+ - It supports serialization and cloning.
+ There are two ways to create a LinkedList:
+   public java.util.LinkedList();
+  public java.util.LinkedList(java.util.Collection<? extends E>);
+ 
+     
+ Vector:
+ ------
+ - It is a predefined class available in java.util .
+ - It extends AbstractList<E>
+    implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+ - It is available since first version of java hence it is also called as
+   legacy class.
+ - It has dynamic array structure.
+ - Its default capacity is 10.
+ - Its new capacity is OldCapacity x 2.
+ - It is heterogeneous.
+ - It allows duplicate.
+ - It allows null.
+ - It is thread safe.
+ - It has synchronized operations.
+ - It supports serialization.
+ - It supports cloning.    
+ 
+ We can create Vector in 4 different ways:
+  - public java.util.Vector(int, int);
+  - public java.util.Vector(int);
+  - public java.util.Vector();
+  - public java.util.Vector(java.util.Collection<? extends E>);
+ 
+ Stack:
+ -----
+ - It is predefined class avaialble in java.util.
+ - It extends Vector.
+ - It follows LIFO.
+ - It is also a legacy class.
+ - It is heterogeneous.
+ - It allows duplicates.
+ - It supports serialisation and cloning
+ - If there are no elements in stack then if we try to peek or pop element from
+   the empty stack then we will get an exception i.e., EmptyStackException.
+ - pop() in Stack is used to retrieve, remove and then return the element from
+    top of stack.
+ - peek() in Stack is used to retrieve and return the element from top of stack.
+ - search() returns how far the element is from the top of stack.If element
+  is not available then we will get -1.
+ 
+import java.util.Stack;
+public class TestStack {
+public static void main(String[] args) {
+    Stack book = new Stack();
+    book.push("Atomic Habit");
+    book.push("JVM Architecture");
+    book.push("Java 8 features");
+    book.push("Theory of Computation");
+    book.push("Atomic Habit");//duplicate
+//    book.push(null);
+    //System.out.println("Before pop(): "+book);
+    //System.out.println(book.pop());
+    //System.out.println("After pop(): "+book);
+    System.out.println("Search AtomicHabit book: "+book.search("Atomic Habit"));
+}
+}
+-----------------------------------------------------------------------------
+     ------------------------------------------------------------------
+ ----------------------------------------------------------------------------
+ Cursor objects for retrieving elements from collection:
+  1.Enumeration:
+   - It is an interface available in java.util package.
+   - An object that implements the Enumeration generates a series of
+     elements, one at a time.
+   - It has got the following methods:
+       1. boolean hasMoreElements();
+      -It returns conditional value 'true' if and only if this
+       enumeration object contains at least one more element to provide
+       otherwise returns false.
+     
+       2.E nextElement();
+      - Returns the next element of this enumeration if this enumeration
+        object has at least one more element to provide.
+      - It throws NoSuchElementException if no more elements exist.
+      - Successive calls to the nextElement method return successive
+        elements of the series.
+       
+ 2.Iterator:
+   - Its an iterator over a collection.
+   - Iterator takes the place of Enumeration in the Java Collections Framework.
+   - Iterators differ from Enumeration in two ways:
+        i) Iterators allow the caller to remove elements from the
+           underlying collection during the iteration with well-defined
+           semantics.
+        ii) Method names have been improved.
+       
+   Iterator has following methods:
+   i)  boolean hasNext(): It returns true if the iteration has more elements.
+   ii) E next(): Returns the next element in the iteration.
+   It throws NoSuchElementException if the iteration has no more elements.
+   
+   3.ListIterator:
+   - Its an interface which extends Iterator.
+   - The methods available in this interface lets us traverse through
+     the elements in forward and backward directions.
+   - It was introduced in java 1.2v.
+   
+   - Its an iterator for lists that allows the programmer to traverse
+    the list in either direction, modify the list during iteration, and
+    obtain the iterator's current position in the list.
+   - A ListIterator has no current element.
+   - Its cursor position always lies between the element that would
+     be returned by a call to previous() and the element that would be
+      returned by a call to next().
+   - An iterator for a list of length n has n+1 possible cursor positions.
+   
+   Methods available in ListIterator:
+     1. boolean hasNext()
+Description: Returns true if there are more elements to iterate over in the forward direction.
+Example:
+ListIterator<String> iterator = list.listIterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+
+2. E next()
+Description: Returns the next element in the list and moves the iterator forward.
+String element = iterator.next();
+
+3. boolean hasPrevious()
+Description: Returns true if there are more elements to iterate over in the backward direction.
+if (iterator.hasPrevious()) {
+    System.out.println(iterator.previous());
+}
+
+4. E previous()
+Description: Returns the previous element in the list and moves the iterator backward.
+String element = iterator.previous();
+
+5. int nextIndex()
+Description: Returns the index of the element that would be returned by a subsequent call to next(). If there are no more elements,
+it returns the size of the list.
+int index = iterator.nextIndex();
+
+6. int previousIndex()
+Description: Returns the index of the element that would be returned by a subsequent call to previous().
+If there are no previous elements, it returns -1.
+int prevIndex = iterator.previousIndex();
+
+7. void remove()
+Description: Removes the last element returned by the iterator. This method can only be called once per call to next() or previous().
+iterator.remove();
+
+8. void set(E e)
+Description: Replaces the last element returned by next() or previous() with the specified element.
+iterator.set("New Element");
+
+9. void add(E e)
+Description: Inserts the specified element into the list at the current position of the iterator. The element is inserted
+before the element that would be returned by next().
+iterator.add("Inserted Element");
+     --------------------------------------------------------------------
+
+     import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Vector;
+public class Test01 {
+    public static void display1(Vector<Integer> numbersList) throws InterruptedException {
+        System.out.println("iterate through elements using for loop");
+        for(int i=0;i<numbersList.size();i++) {
+            Thread.sleep(1500);
+            System.out.println(numbersList.get(i));
+        }
+    }
+    public static void display2(Vector<Integer> numbersList) throws InterruptedException  {
+        System.out.println("iterate through elements using for each loop");
+        for(Integer iObj:numbersList) {
+            Thread.sleep(1500);
+            System.out.println(iObj);
+        }
+    }
+    public static void display3(Vector<Integer> numbersList) throws InterruptedException  {
+        System.out.println("iterate through elements using iterator");
+        Integer obj;
+        Iterator<Integer> itr = numbersList.iterator();
+        while(itr.hasNext()==true) {
+            obj = itr.next();
+            Thread.sleep(1500);
+            System.out.println(obj);
+        }
+    }
+    public static void display4(Vector<Integer> numbersList) throws InterruptedException  {
+        ListIterator<Integer> listIterator = numbersList.listIterator();
+        Integer obj;
+        System.out.println("iterating in forward direction: ");
+        while(listIterator.hasNext()) {
+            obj=listIterator.next();
+            Thread.sleep(1000);
+            System.out.println(obj);
+        }
+        System.out.println("iterating in backward direction: ");
+        while(listIterator.hasPrevious()==true) {
+            obj = listIterator.previous();
+            Thread.sleep(1500);
+            System.out.println(obj);
+        }
+    }
+}
+    class Sample{
+    public static void display5(Vector<Integer> numbersList) throws InterruptedException{
+        Enumeration<Integer> e = numbersList.elements();
+        System.out.println("Elements in vector: ");
+        while (e.hasMoreElements()) {
+            Integer integer = (Integer) e.nextElement();
+            Thread.sleep(500);
+            System.out.println(integer);    
+        }
+    }    
+public static void main(String[] args)throws InterruptedException {
+    Vector<Integer> numbersList = new Vector<Integer>();
+    numbersList.add(10);
+    numbersList.add(20);
+    numbersList.add(30);
+    Sample.display5(numbersList);
+ }
+}
+--------------------------------------
+class Employee{
+    String name;
+    int age;
+    String empId;
+    public Employee(String name, int age, String empId) {
+        this.name = name;
+        this.age = age;
+        this.empId = empId;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public String getEmpId() {
+        return empId;
+    }
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
+    @Override
+    public String toString() {
+        return "Employee [name=" + name + ", age=" + age + ", empId=" + empId + "]";
+    }
+}
+public class TestArrayList {
+public static void main(String[] args) {
+    LinkedList a = new LinkedList();
+    a.add(new Employee("james", 30, "JA123"));
+    a.add(new Employee("mark", 20, "MA321"));
+//    a.forEach(emp->System.out.println(emp));
+    //a.forEach(e->System.out.println(e));
+    Iterator<Employee> e = a.iterator();
+    e.forEachRemaining(emp->System.out.println(emp));
+   
+}
+}
+   
+  Queue:
+   - The Queue is used to insert elements at the end of the
+      queue and removes from the beginning of the queue.
+   - It follows FIFO concept.
+   - The Java Queue supports all methods of Collection interface
+     including insertion, deletion, etc.LinkedList, ArrayBlockingQueue
+      and PriorityQueue are the most frequently used implementations.
+   - If any null operation is performed on BlockingQueues,
+     NullPointerException is thrown.
+    - The Queues which are available in java.util package are
+       Unbounded Queues.
+   - The Queues which are available in java.util.concurrent
+      package are the Bounded Queues.
+   - All Queues except the Deques supports insertion and removal
+    at the tail and head of the queue respectively. The Deques
+     support element insertion and removal at both ends.  
+     
+ Q. What is the difference between bounded queue and unbounded queue?
+ Answer: Bounded Queues are fixed which means if we try to add element
+  beyond the limit then we will get IllegalStateException.To overcome
+  the exception we must use offer() instead of add().
+ 
+  Unbounded Queues are not fixed which means if add element
+  it keeps om growing dynamically.
+ 
+  - Bounded Queue restricts the memory overflow.
+   Unbounded Queue cant restrict the memory overlow.
+ 
+  -Bounded Queues are implemented by ArrayBlockingQueue,
+   SynchronousQueue,PriorityBlockingQueue,LinkedTransferQueue etc.
+   Unbounded Queues are implemented by PriorityQueue.  
+     
+     Set(I):
+     AbstractSet, ConcurrentHashMap.KeySetView, ConcurrentSkipListSet,
+      CopyOnWriteArraySet, EnumSet, HashSet, JobStateReasons,
+      LinkedHashSet, TreeSet.
+   
+      HashSet:
+      - It is the implementation class of Set.
+      - It is available in java.util package.
+      - It was introduced in java 1.2v.
+      - The underlying data structure is hashtable.
+      - In hashset, arranging the data is unpredicatble, because the objects are
+        arranged based on hashcode of the object.
+      - Duplicates are not allowed.
+      - null is allowed but only once.
+      - The load factor of hashset is 0.75.It means once the hashset is filled by
+        75% then new hashset is created.
+      - New Capacity = OC X 2.
+      - We can change the default capacity and fill ratio of HashSet objects,
+       by creating hashset objects in multiple ways:
+           1. HashSet hs = new HashSet(int cuctomizedCapacity);
+           The above syntax is used to create hashset object by providing
+           capacity of hashset as per the requirement.
+           e.g: HashSet hs = new HashSet(10);
+           
+           2. HashSet hs = new HashSet(int customizedcapacity,float loadfactor)
+              e.g: HashSet hs = new HashSet(10,0.9F);
+              In the above code capacity is set to be 10 and load factor is 90% which
+              means once 90% of the hashset is filled then only new hashset is created.
+           
+      - We can create HashSet object which can contain the elements of the specified
+        collection by using the following syntax:
+           HashSet hs = new HashSet(Collection c)
+           
+     - HashSet is non thread safe.
+     - It supports serialization and cloning.
+
+Disadvantages of HashSet:
+- It is non thread safe.
+- It doesnot maintain insertion order.
+- Memory is wasted as internally it uses HashMap.
+- We cant access elements from a HashSet on the basis of its index.
+- HashSet is slower in performance as TimeComplexity is more for
+  accessing elements from HashSet.If we want to access elements then
+  better choice is ArrayList(as it is indexed based).
+  --------------------------------------------------------------------
+   
+     LinkedHashSet:
+     - Its a predefined class available in java.util package.
+     - It extends HashSet.
+     - It has all the functionalities of HashSet but the main difference is that
+       in LinkedHashSet object the elements are in sorted order.
+     - The underlying data structure of LinkedHashSet is
+       of a hash table and a doubly linked list.The hash table is used to
+       store the elements of the set, and the doubly linked list is used
+       to maintain the insertion order of the elements.
+     - When an element is added to a LinkedHashSet, it is first hashed and
+       then inserted into the hash table. If the element is already present
+       in the set, it is not added again. The element is also added to the
+       end of the doubly linked list.
+     - When an element is removed from a LinkedHashSet, it is first removed
+       from the hash table and then from the doubly linked list.
+     - The iteration order of a LinkedHashSet is the same as the order in
+       which the elements were inserted into the set.This is because the doubly
+       linked list maintains the insertion order of the elements.
+     - Duplicates are not allowed.
+     - null is allowed but only once.
+     - heterogeneous in nature
+     - We can change the default capacity and fill ratio of LinkedHashSet objects,
+       by creating Linkedhashset objects in multiple ways:
+           1. LinkedHashSet lhs = new LinkedHashSet(int cuctomizedCapacity);
+           The above syntax is used to create Linkedhashset object by providing
+           capacity of hashset as per the requirement.
+           
+           2.LinkedHashSet hs = new LinkedHashSet(int customizedcapacity,float loadfactor)
+           The above syntax is used to create Linkedhashset object by providing
+           capacity of hashset and load factor as per the requirement.
+           
+           3.  LinkedHashSet hs = new LinkedHashSet();
+            LinkedHashSet object can be created with default capacity 16 and loadfactor
+            0.75.
+         
+           4. LinkedHashSet hs = new LinkedHashSet(Collection c)
+           We can create LinkedHashSet object which can contain the elements in the
+           specified collection.
+           
+     SortedSet:
+   - It is the sub interface of Set interface.
+   - If we don't want duplicate elements and want to store the elements based
+      on some sorting order i.e default natural sorting order then we should
+      go with SortedSet(I).Default natural sorting means ascending order.
+   -  It maintains ascending order for numbers.
+   -  It maintains Alphabetical order or Lexicographical Order for string.
+   -  We have two interfaces Comparable(available in java.lang package) and
+      Comparator(available in java.util package) to compare two objects.
+   -  Methods in SortedSet:
+       -  public abstract java.util.Comparator<? super E> comparator();
+          returns comparator used, returns null if natural order is used.
+         
+       -  public abstract java.util.SortedSet<E> subSet(E, E);
+          returns elements in between the given range excluding the last.
+         
+       -  public abstract java.util.SortedSet<E> headSet(E);
+          retutns the elements less than the passed element
+       
+       -  public abstract java.util.SortedSet<E> tailSet(E);
+          returns the elements greater or equal to the given element
+         
+       -  public abstract E first();
+          returns first element(lowest element) in the set
+         
+       -  public abstract E last();
+          returns last element(highest element) in the set
+         
+          public default java.util.Spliterator<E> spliterator();
+     
+    NavigableSet:
+      - It is the sub interface of SortedSet interface.
+      - It helps us in navigating throught the complete set in forward
+        direction(ascending order) as well as backward direction
+        (descending order).
+      - It maintans Default Natural Sorting Order.
+      - Methods in NavigableSet:
+             public abstract E lower(E);
+             public abstract E floor(E);
+             public abstract E ceiling(E);
+             public abstract E higher(E);
+             public abstract E pollFirst();
+             public abstract E pollLast();
+             public abstract java.util.NavigableSet<E> descendingSet();
+             public abstract java.util.Iterator<E> descendingIterator();
+             public abstract java.util.NavigableSet<E> headSet(E, boolean);
+             public abstract java.util.NavigableSet<E> tailSet(E, boolean);
+           
+ Q. What is the difference between HashSet and LinkedHashSet on the basis
+ of storage of elements?      
+Answer: HashSet uses HashMap object internally to store it’s elements where as
+        LinkedHashSet uses LinkedHashMap object internally to store and
+        process it’s elements.
+        In hashSet, elements you insert are stored as keys of HashMap object.
+        Where as in LinkedHashSet, elements you insert are stored as keys of
+        LinkedHashMap object.
+        In HashSet the insertion order is not preserved whereas in LinkedHashSet
+        the insertion order is preserved.
+   
+   TreeSet(C):
+   - TreeSet is a predefined class available in java.util package.
+   - It was introduced in java 1.2v.
+   - It implements NavigableSet which extends SortedSet which extends
+     Set.
+   - The underlying data structure is Red-Black Balanced Tree.
+   - null is not allowed because null cant be compared with any element.
+   - TreeSet is homogeneous in nature.
+   - First element added into treeset defines the type of elements
+     to be added further in treeset. If we dont maintain the types
+     then we will get ClassCastException.
+   - TreeSet can accept any type of value but make sure that the type
+     must be maintained.
+   - It can support serialization and cloning.
+   - It has no default capacity.
+   - Elements stored in treeset are sorted in ascending order.
+   - We can customize the sorting using Comparator.
+   - The time complexity for TreeSet for perfroming basic operations such
+     as add(),remove(),contains() etc is O(n log n) due to Red-Black
+     balance tree.
