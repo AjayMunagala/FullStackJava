@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup Form</title>
+</head>
+<body>
+
+  <input type="text" id="uname" placeholder="Enter Username"><br>
+  <input type="email" id="email" placeholder="Enter Email ID"><br>
+  <input type="password" id="pswd" placeholder="Enter Password"><br>
+  <input type="password" id="cnfpswd" placeholder="Re-enter Password"><br>
+  <input type="button" id="button" value="Validate">
+
+  <script>
+    // ✅ Regex patterns
+    const emailRegex = /^[\w.]{1,20}@gmail\.com$/;
+    const passwordRegex = /^[\w@.]{8,20}$/;
+    const usernameRegex = /^[\w ]{3,20}$/;
+
+    // ✅ Arrow function: Validate Username
+    const validateUsername = (uname) => {
+      if (uname.trim() === "") {
+        console.log("❌ Username cannot be empty.");
+      } else if (!usernameRegex.test(uname)) {
+        console.log("❌ Username must be 3–20 letters, numbers, underscores or spaces.");
+      } else {
+        console.log("✅ Username valid.");
+      }
+    };
+
+    // ✅ Arrow function: Validate Email
+    const validateEmail = (email) => {
+      if (email.trim() === "") {
+        console.log("❌ Email cannot be empty.");
+      } else if (!emailRegex.test(email)) {
+        console.log("❌ Email must be a valid Gmail (example@gmail.com).");
+      } else {
+        console.log("✅ Email valid.");
+      }
+    };
+
+    // ✅ Arrow function: Validate Password
+    const validatePassword = (password) => {
+      if (password.trim() === "") {
+        console.log("❌ Password cannot be empty.");
+      } else if (!passwordRegex.test(password)) {
+        console.log("❌ Password must be 8–20 characters and include letters/numbers/@/.");
+      } else {
+        console.log("✅ Password valid.");
+      }
+    };
+
+    // ✅ Arrow function: Validate Confirm Password
+    const validateConfirmPassword = (password, confirmPassword) => {
+      if (confirmPassword.trim() === "") {
+        console.log("❌ Confirm Password cannot be empty.");
+      } else if (password !== confirmPassword) {
+        console.log("❌ Passwords do not match.");
+      } else {
+        console.log("✅ Passwords match.");
+      }
+    };
+
+    // ✅ Arrow function: Main validator on button click
+    const validateForm = () => {
+      const uname = document.getElementById("uname").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("pswd").value;
+      const confirmPassword = document.getElementById("cnfpswd").value;
+
+      validateUsername(uname);
+      validateEmail(email);
+      validatePassword(password);
+      validateConfirmPassword(password, confirmPassword);
+    };
+
+    // ✅ Event listener
+    document.getElementById("button").addEventListener("click", validateForm);
+  </script>
+
+</body>
+</html>
