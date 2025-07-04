@@ -276,6 +276,7 @@ Both code output is same
 
 --------------------------------------------------------------------------------------------------------
 6.what is Regularexpression and write email validations and mobile validation without HTML integration?
+
 Answer
 ======
 A Regular Expression (RegEx) is a sequence of characters that forms a search pattern. It's used to:
@@ -285,6 +286,7 @@ A Regular Expression (RegEx) is a sequence of characters that forms a search pat
 
 email validations and mobile validation without HTML integration?
 ----------------------------------------------------------------
+
 Answer:-
 without (End-User input)Frontend technologies(like HTML & React) it is not possible to perfrom validation.
 but we can perform some tests in server with the help of node js.

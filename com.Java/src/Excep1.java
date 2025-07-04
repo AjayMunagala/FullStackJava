@@ -1,5 +1,10 @@
 import java.util.Scanner;
-class ZeroException extends Exception{}
+class ZeroException extends Exception{
+    ZeroException(String message) {
+        super(message);
+    }
+    
+}
 public class Excep1 {
     int a;
     int b;
@@ -13,7 +18,7 @@ public class Excep1 {
         //    System.out.println("Please Enter the Positive Number");
         // }
         if(b<=0){
-            throw new ZeroException();
+            throw new ZeroException("Donot divide by zero");
         }else {
             System.out.println(a%b);
                 }
@@ -21,11 +26,17 @@ public class Excep1 {
     public static void main(String[] args) throws ZeroException{
         Excep1 exp = new Excep1();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the value of a :");
+        try {
+            System.out.println("Enter the value of a :");
         int a = sc.nextInt();
         System.out.println("enter the value of b : ");
         int b = sc.nextInt();
-        exp.div(a,b);
+         exp.div(a,b);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+       
         sc.close();
 
     }

@@ -49,7 +49,7 @@ Initialize the attributes using setters.
 Calculate and print the total cost using the calculateTotalCost()
 method with car model and rentalDays.
  */
-class CarRenatal{
+class CarRental{
     private String carModel;
     private int rentalDays;
     private double dailyRate;

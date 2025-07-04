@@ -21,6 +21,7 @@ import java.util.Scanner;
 @FunctionalInterface
 public interface Seta1 {
     void findNum(int num);
+    
 public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
     System.out.println("Enter a number");

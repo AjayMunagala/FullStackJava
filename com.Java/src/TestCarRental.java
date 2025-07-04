@@ -1,6 +1,6 @@
 public class TestCarRental {
     public static void main(String[] args){
-        CarRenatal cr = new CarRenatal();
+        CarRental cr = new CarRental();
         cr.setCarModel("Apache");
         cr.setRentalDays(10);
         cr.setDailyRate(2500);
